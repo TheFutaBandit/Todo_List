@@ -17,23 +17,43 @@
             <div class = "project"><p>PROJECTS</p></div>
             <div class = "project-list">
                 <!-- dynamic -->
-                 <div class = "project-card">poggers</div>
-                 <div class = "project-card">poggers</div>
+                 <div class = "project-card">Project 1</div>
+                 <div class = "project-card">Project 2</div>
+                 <button class = "project-add">+</button>
             </div>
         </div>
     </div>
     <div class = "taskbar">
         <div class = "task-header">
             <div class = "left-section">
-                <p class = "greet">Hello, Futa Bandit</p>
+                <p class = "greet">Good Evening, FutaBandit</p>
                 <p class = "date">It's Sunday, 29 September 2024</p>
+            </div>
+            <div class = "right-section">
+                <button class = "add-task">+</button>
+                <dialog class = "modal" id = "modal">
+                    <form class="form" method="dialog">
+                        <label id = "input_name">Input Name</label>
+                        <input id = "input_name"> 
+                        <button class = "submit-button">submit</button>
+                    </form>
+                </dialog>
             </div>
         </div>
         <div class = "task-container">
             <!-- dynamic -->
              <div class = "task">
-                <div class = name><p>Task: Make Todo App</p></div>
-                <div class = date><p>Due-Date: 13/23/2024</p></div>
+                <div class = "priority"></div>
+                <div class = "task-content">
+                    <div class = "task-text">
+                        <div class = "name"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p></div>
+                        <div class = "date"><p>Due-Date: 13/23/2024</p></div>
+                    </div>
+                    <div class = "task-options">
+                        <button class = "trash">-</button>
+                        <button class = "check">?</button>
+                    </div>
+                </div>
              </div>
         </div>
     </div>
