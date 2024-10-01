@@ -193,7 +193,7 @@ body .taskbar {
   gap: 10px;
 }
 
-.task-container .task-open {
+.task-container #task-dialog {
   border: 1px solid black;
   border-radius: 5px;
   display: grid;
@@ -209,24 +209,24 @@ body .taskbar {
   transform: translate(-50%,-50%);
 }
 
-.task-open .priority {
+#task-dialog .priority {
   background-color: rgb(175, 174, 174);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.task-open .task-content {
+#task-dialog .task-content {
   padding: 5px;
   display: flex;
 }
 
-.task-open .task-content .task-text {
+#task-dialog .task-content .task-text {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.task-open .task-text .name {
+#task-dialog .task-text .name {
   font-size: 24px;
   line-height: 0.9;
 }
@@ -236,7 +236,7 @@ body .taskbar {
   font-weight: 400;
 }
 
-.task-open .task-text .date {
+.task-dialog .task-text .date {
   font-weight: 500;
   font-size: 16px;
 }
