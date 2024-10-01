@@ -31,10 +31,28 @@
             </div>
             <div class = "right-section">
                 <button class = "add-task">+</button>
-                <dialog class = "modal" id = "modal">
-                    <form class="form" method="dialog">
-                        <label id = "input_name">Input Name</label>
-                        <input id = "input_name"> 
+                <dialog class="modal" id="add-task-modal">
+                    <form class="task_form" method="dialog">
+                        <div class = "form_input_name">
+                            <label for = "input_name">Name:</label>
+                            <input type = "text" id = "input_name" name = "task-name" required> 
+                        </div>
+                        <div class = "form_input_description">
+                            <label for = "input_description">Description:</label>
+                            <input type = "text" id = "input_description" name = "task-description" required> 
+                        </div>
+                        <div class = "form_input_date">
+                            <label for = "input_date">Date:</label>
+                            <input type = "date" id = "input_date" name = "task-date" required> 
+                        </div>
+                        <div class = "form_selection_checklist">
+                            <label for = "input_checklist">Priority: </label>
+                            <select id = "input_checklist" name = "task-priority">
+                                <option value = "high">High</option>
+                                <option value = "neutral">Neutral</option>
+                                <option value = "low">Low</option>
+                            </select>
+                        </div>
                         <button class = "submit-button">submit</button>
                     </form>
                 </dialog>
@@ -55,6 +73,19 @@
                     </div>
                 </div>
              </div>
+             <dialog class = "task-open" open>
+                <div class = "priority"></div>
+                <div class = "task-content">
+                    <div class = "task-text">
+                        <div class = "name"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p></div>
+                        <div class = "description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus perferendis animi optio quibusdam at laborum tempore corrupti delectus fugit ipsam!</div>
+                        <div class = "date"><p>Due-Date: 13/23/2024</p></div>
+                    </div>
+                    <div class = "task-options">
+                        <button class = "trash">-</button>
+                    </div>
+                </div>
+             </dialog>
         </div>
     </div>
 </body>
