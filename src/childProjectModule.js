@@ -28,7 +28,6 @@ export const childProjectObject = (() => {
     }
 
     return {
-        project,
         addTaskObject,
         displayTasks,
         deleteTask,

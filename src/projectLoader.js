@@ -33,6 +33,5 @@ export const projectLoader = (() => {
         addTaskToProject,
         printProject,
         deleteProject,
-        parentProjectArray
     }
 })();
