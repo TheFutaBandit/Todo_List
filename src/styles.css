@@ -209,6 +209,10 @@ body .taskbar {
   transform: translate(-50%,-50%);
 }
 
+#task-dialog:not([open]) {
+  display: none;
+}
+
 #task-dialog .priority {
   background-color: rgb(175, 174, 174);
   border-top-left-radius: 5px;
