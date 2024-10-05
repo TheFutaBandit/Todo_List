@@ -1,5 +1,3 @@
-// main logic
-
 import { childProjectObject } from "./childProjectModule";
 
 export const projectLoader = (() => {
@@ -23,6 +21,10 @@ export const projectLoader = (() => {
         parentProjectArray.splice(projectIndex,1);
     }
 
+    function parentProjectSize() {
+        return parentProjectArray.length;
+    }
+
     const defaultAction = (() => {
         parentProjectArray.push(childProjectObject());
     })();
@@ -33,5 +35,6 @@ export const projectLoader = (() => {
         addTaskToProject,
         printProject,
         deleteProject,
+        parentProjectSize
     }
 })();

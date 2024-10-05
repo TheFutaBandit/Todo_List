@@ -1,26 +1,21 @@
 import "./styles.css"
 import {addDays, format} from "date-fns"
 import { projectLoader } from "./projectLoader";
+import { screenLoader } from "./screenRenderModule";
 
-{/* <div class = "project-card">Project 1</div>
-<div class = "project-card">Project 2</div>
-<button class = "project-add">+</button> */}
-
-
-const screenLoader = () => {
-    const projectCardRender = (name = "hello") => {
-        const projectList = document.querySelector(".project-list");
-        const projectCard = document.createElement("div");
-        projectCard.classList.add("project-card");
-        projectCard.textContent = name;
-        projectList.appendChild(projectCard);
-    };
-
-    return {
-        projectCardRender
-    }
-}
-
+{/* <div class = "task">
+        <div class = "priority"></div>
+        <div class = "task-content">
+            <div class = "task-text">
+                <div class = "name"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p></div>
+                <div class = "date"><p>Due-Date: 13/23/2024</p></div>
+            </div>
+            <div class = "task-options">
+                <button class = "trash">-</button>
+                <button class = "check">?</button>
+            </div>
+        </div>
+    </div> */}
 
 const webpageLoader = (() => {
     // const mainProject = projectLoader;
@@ -30,9 +25,26 @@ const webpageLoader = (() => {
     // mainProject.parentProjectArray[1].setPriority(0,"high")
     // mainProject.parentProjectArray[1].toggleStatus(0);
     // mainProject.printProject(1);
-    const screen = screenLoader();
-    screen.projectCardRender("Project 1");
+    const screen = screenLoader;
+    const mainProject = projectLoader;
+
+    const addProjectButton = (() => {
+        const addButton = document.querySelector(".project-add");
+        addButton.addEventListener("click", () => {
+            mainProject.addProject();
+            screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`);
+        })
+    })();
+
+    screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`);
+
+    for(let i = 0; i<3; i++) {screen.taskCardRender();}
 })();
+
+
+
+
+
 
 
 

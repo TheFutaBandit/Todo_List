@@ -104,7 +104,7 @@ body .navbar {
     border-radius: 5px;
 }
 
-.project-list .project-add {
+.project-add {
     border: 1px dashed black;
     border-radius: 5px;
     cursor: pointer;
@@ -209,9 +209,9 @@ body .taskbar {
   transform: translate(-50%,-50%);
 }
 
-#task-dialog:not([open]) {
+/* #task-dialog:not([open]) {
   display: none;
-}
+} */
 
 #task-dialog .priority {
   background-color: rgb(175, 174, 174);
