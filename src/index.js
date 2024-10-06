@@ -37,6 +37,7 @@ const webpageLoader = (() => {
         })
     })();
 
+
     function projectAdditionLogic(){
         screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`, mainProject.parentProjectSize());
         mainProject.addProject();    
@@ -65,7 +66,7 @@ const webpageLoader = (() => {
             if(projectIndex === "undefined") console.log("wtf");
             // console.log("hi");
             screen.taskCardRender("gym hey", "Due Date: Tomorrow");
-            mainProject.addTaskToProject(0,"gym hey", "gym hey", "56", "hello");
+            mainProject.addTaskToProject(projectIndex,"gym hey", "gym hey", "56", "Due Date: Tomorrow");
         }
 
         function changeTaskButtonIndex(index) {
@@ -95,6 +96,12 @@ const webpageLoader = (() => {
     })();
 
 
+    const projectTasksRender = (projectIndex) => {
+        mainProject.parentProjectArray[projectIndex].project.forEach((event) => {
+            screen.taskCardRender(event.name, event.date);
+            // console.log(event)
+        })
+    }
 
 
     const switchProjects = (() => {
@@ -105,6 +112,8 @@ const webpageLoader = (() => {
             if(projectIndexEvent === undefined) projectIndexEvent = 0;
             console.log(`${projectIndexEvent}`);
             configureAndButton.changeTaskButtonIndex(projectIndexEvent);
+            screen.clearProjectTasks();
+            projectTasksRender(projectIndexEvent);
             // console.log("hi")
             // mainProject.parentProjectArray[projectIndexEvent-1].project.forEach((event) => {  
             //     console.log(event);

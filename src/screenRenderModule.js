@@ -65,6 +65,11 @@ export const screenLoader = (() => {
         taskContainer.appendChild(taskCard);
     }
 
+    const clearProjectTasks = () => {
+        const taskContainer = document.querySelector(".task-container");
+        taskContainer.innerHTML = "";
+    }
+
     const projectAddRender = () => {
         projectCardRender("+","project-add","button");
     };
@@ -74,6 +79,7 @@ export const screenLoader = (() => {
     return {
         projectCardRender,
         taskCardRender,
+        clearProjectTasks,
         // addTaskModal
     }
 })();
