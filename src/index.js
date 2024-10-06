@@ -133,7 +133,7 @@ const webpageLoader = (() => {
 
     const projectTasksRender = (projectIndex) => {
         mainProject.parentProjectArray[projectIndex].project.forEach((event) => {
-            screen.taskCardRender(event.name, event.date);
+            screen.taskCardRender(event.name, event.date, event.description, event.priority, mainProject.getProjectSize(projectIndex));
         })
     }
 
