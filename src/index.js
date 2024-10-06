@@ -55,32 +55,62 @@ const webpageLoader = (() => {
         addButton.addEventListener("click", projectAdditionLogic)
     })();
 
-    const configureAndButton = (projectIndex = 0) => {
+    const configureAndButton = ((index) => {
         const addButton = document.querySelector(".add-task");
-        addButton.addEventListener("click", () => {
-            console.log("hi");
+
+        let projectIndex = 0;
+
+        function addTask() {
+            console.log(`I belong to : ${projectIndex}`);
+            if(projectIndex === "undefined") console.log("wtf");
+            // console.log("hi");
             screen.taskCardRender("gym hey", "Due Date: Tomorrow");
-            mainProject.addTaskToProject(projectIndex,"gym hey", "gym hey", "56", "hello");
+            mainProject.addTaskToProject(0,"gym hey", "gym hey", "56", "hello");
+        }
+
+        function changeTaskButtonIndex(index) {
+            console.log(`I have been changed to ${index}`)
+            projectIndex = index;
+        }
+
+        function addTaskButtonEvent() {
+            addButton.addEventListener("click", addTask)
+        }
+
+        function removeTaskButtonEvent() {
+            addButton.removeEventListener("click", addTask)
+        }
+
+        return {
+            addTaskButtonEvent,
+            removeTaskButtonEvent,
+            changeTaskButtonIndex
+        }
+    })();
+
+    
+
+    const defaultConfigureButton = (() => {
+        configureAndButton.addTaskButtonEvent();
+    })();
+
+
+
+
+    const switchProjects = (() => {
+        const project_list = document.querySelector(".project-list")
+
+        project_list.addEventListener("click", (event) => {
+            let projectIndexEvent = event.target.dataset.id;   
+            if(projectIndexEvent === undefined) projectIndexEvent = 0;
+            console.log(`${projectIndexEvent}`);
+            configureAndButton.changeTaskButtonIndex(projectIndexEvent);
+            // console.log("hi")
+            // mainProject.parentProjectArray[projectIndexEvent-1].project.forEach((event) => {  
+            //     console.log(event);
+            // });            
         })
-    };
-
-    configureAndButton();
-
-
-    // const displayProjectTasksRender = (() => {
-    //     const project_list = document.querySelector(".project-list")
-
-    //     project_list.addEventListener("click", (event) => {
-    //         let projectIndexEvent = event.target.dataset.id;   
-    //         if(projectIndexEvent === undefined) projectIndexEvent = 1;
-    //         configureAndButton(projectIndexEvent);
-    //         // console.log("hi")
-    //         mainProject.parentProjectArray[projectIndexEvent-1].project.forEach((event) => {  
-    //             console.log(event);
-    //         });            
-    //     })
-
-    // })();
+    })();
 
 
     // const addTaskToProjectButton = (() => {
