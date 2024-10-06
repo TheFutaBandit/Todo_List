@@ -60,7 +60,9 @@ const webpageLoader = (() => {
         addButton.addEventListener("click", projectAdditionLogic)
     })();
 
-    
+    const removeTaskCallBack = (projectIndex, projectTask) => {
+        mainProject.deleteProjectTask(projectIndex, projectTask);
+    }
 
     
 
@@ -79,7 +81,7 @@ const webpageLoader = (() => {
         
 
         function displayTaskFromModal(taskName = "Let It Rip", taskDescription = "loremIpsumBruh", taskDate = "10/10/24", taskPriority = "High") {
-            screen.taskCardRender(taskName, taskDate, taskDescription, taskPriority, mainProject.getProjectSize(projectIndex));
+            screen.taskCardRender(taskName, taskDate, taskDescription, taskPriority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack);
             mainProject.addTaskToProject(projectIndex,taskName, taskDescription, taskDate, taskPriority);
         }
 
@@ -133,9 +135,11 @@ const webpageLoader = (() => {
 
     const projectTasksRender = (projectIndex) => {
         mainProject.parentProjectArray[projectIndex].project.forEach((event) => {
-            screen.taskCardRender(event.name, event.date, event.description, event.priority, mainProject.getProjectSize(projectIndex));
+            screen.taskCardRender(event.name, event.date, event.description, event.priority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack);
         })
     }
+
+    
 
 
     const switchProjects = (() => {

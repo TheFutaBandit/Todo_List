@@ -21,12 +21,17 @@ export const projectLoader = (() => {
         parentProjectArray.splice(projectIndex,1);
     }
 
+
     function parentProjectSize() {
         return parentProjectArray.length;
     }
 
     function getProjectSize(index) {
         return parentProjectArray[index].getProjectSize;
+    }
+
+    function deleteProjectTask(index,taskIndex) {
+        parentProjectArray[index].deleteTask(taskIndex);
     }
 
     // const defaultAction = (() => {
@@ -41,6 +46,7 @@ export const projectLoader = (() => {
         printProject,
         deleteProject,
         parentProjectSize,
-        getProjectSize
+        getProjectSize,
+        deleteProjectTask,
     }
 })();

@@ -88,7 +88,7 @@ export const screenLoader = (() => {
         })
     }
 
-    function childrenAppendTasks(parentNode, taskName = "Lorem ipsum dolor sit, amet consectetur adipisicing elit!", taskDate = "Due-Date: 13/23/2024", taskDescription, taskPriority) {
+    function childrenAppendTasks(parentNode, taskName = "Lorem ipsum dolor sit, amet consectetur adipisicing elit!", taskDate = "Due-Date: 13/23/2024", taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack) {
         const priority = document.createElement("div");
         priority.classList.add("priority");
         const task_content = document.createElement("div");
@@ -129,18 +129,22 @@ export const screenLoader = (() => {
         trashButton.addEventListener("click", () => {
             const taskContainer = document.querySelector(".task-container");
             taskContainer.removeChild(parentNode);
+            // console.log(projectIndex);
+            if(projectIndex != 0) removeTaskCallBack(0, taskIndex);
+            removeTaskCallBack(projectIndex,taskIndex);
+            
         })
 
         parentNode.appendChild(priority);
         parentNode.appendChild(task_content);
     }
 
-    const taskCardRender = (taskName, taskDate, taskDescription, taskPriority, taskIndex) => {
+    const taskCardRender = (taskName, taskDate, taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack) => {
         const taskContainer = document.querySelector(".task-container");
         const taskCard = document.createElement("div");
         taskCard.classList.add("task");
         taskCard.setAttribute("data-index",taskIndex);
-        childrenAppendTasks(taskCard,taskName,taskDate,taskDescription,taskPriority);
+        childrenAppendTasks(taskCard,taskName,taskDate,taskDescription,taskPriority,taskIndex, projectIndex, removeTaskCallBack);
         taskContainer.appendChild(taskCard);
     }
 
