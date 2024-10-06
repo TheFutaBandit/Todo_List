@@ -43,6 +43,12 @@ const webpageLoader = (() => {
         mainProject.addProject();    
     }
 
+    const expandTask = (taskName, taskDescription, taskDate, taskPriority) => {
+        screen.expandModalRender(taskName, taskDescription, taskDate, taskPriority);
+        const dialogExpand = document.querySelector("#expandTask");
+        dialogExpand.showModal();
+    };
+
     const defaultProjectAddition = (() => {
         projectAdditionLogic();
     })();
@@ -55,6 +61,8 @@ const webpageLoader = (() => {
         const addButton = document.querySelector(".project-add");
         addButton.addEventListener("click", projectAdditionLogic)
     })();
+
+    
 
     const configureAndButton = ((index) => {
         const addButton = document.querySelector(".add-task");
@@ -121,6 +129,11 @@ const webpageLoader = (() => {
         })
     }
 
+    const expandTaskEventAssign = (() => {
+        const task_list = document.querySelector("task-container");
+
+    })
+
 
     const switchProjects = (() => {
         const project_list = document.querySelector(".project-list")
@@ -144,6 +157,12 @@ const webpageLoader = (() => {
     //     })
         
     // })();
+
+    
+
+    
+
+    
 
 
 

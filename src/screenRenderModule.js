@@ -74,12 +74,81 @@ export const screenLoader = (() => {
         projectCardRender("+","project-add","button");
     };
 
+    const expandModalRender = (taskName = "Lorem ipsum dolor sit, amet conse adipisicing elit!", 
+        taskDescription = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sed asperiores nulla molestias vitae! Odio, recusandae. Excepturi reprehenderit veniam neque dolorem inventore! Numquam vel sint consequuntur, id ut eos dicta?",
+        taskDate = "13/04/2003",
+        taskPriority = "High",
+        taskStatus = "0") => {
+
+        const body = document.querySelector("body");
+        const expand_task = document.createElement("dialog");
+        expand_task.setAttribute("id", "expandTask");
+
+
+
+        const task_header = document.createElement("div");
+        task_header.classList.add("task_header");
+        expand_task.appendChild(task_header);
+
+        const task_name = document.createElement("div");
+        task_name.classList.add("task_name");
+        task_name.textContent = taskName;
+        task_header.appendChild(task_name);
+
+        const task_status = document.createElement("task_status");
+        task_status.classList.add("task_status");
+        const input_status = document.createElement("input");
+        input_status.setAttribute("id", "input_status");
+        input_status.setAttribute("type", "checkbox");
+        task_status.appendChild(input_status);
+        task_header.appendChild(task_status);
+
+
+
+        const task_body = document.createElement("div");
+        task_body.classList.add("task_body");
+        task_body.textContent = taskDescription;
+        expand_task.appendChild(task_body);
+
+
+
+        const task_footer = document.createElement("div");
+        task_footer.classList.add("task_footer");
+        expand_task.appendChild(task_footer);
+        
+        const task_date = document.createElement("div");
+        task_date.classList.add("task_date");
+        task_date.textContent = taskDate;
+        task_footer.appendChild(task_date);
+
+        const task_priority = document.createElement("div");
+        task_priority.classList.add("task_priority");
+        task_priority.textContent = taskPriority;
+        task_footer.appendChild(task_priority);
+
+
+
+        const task_close = document.createElement("button");
+        task_close.classList.add("task_close");
+        task_close.textContent = "close";
+        expand_task.appendChild(task_close);
+
+        body.appendChild(expand_task);
+
+        task_close.addEventListener("click", () => {
+            expand_task.close();
+        })
+
+
+    }
+
     
 
     return {
         projectCardRender,
         taskCardRender,
         clearProjectTasks,
+        expandModalRender,
         // addTaskModal
     }
 })();

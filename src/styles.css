@@ -102,6 +102,7 @@ body .navbar {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .project-add {
@@ -319,6 +320,71 @@ input[type="date"],
   align-self: center;
   width: 120px;
   border-radius: 5px;
+}
+
+#expandTask[open] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid black;
+  border-radius: 5px;
+
+  min-height: 300px;
+  max-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* gap: 25px; */
+  font-size: 16px;
+  padding: 16px;
+}
+
+#expandTask .task_header {
+  display: flex;
+  gap: 10px;
+  /* justify-content: space-around; */
+  padding: 0px 4px;
+}
+
+.task_header .task_name {
+  flex: 1;
+  font-size: 1.2em;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.task_header .task_status {
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task_status #input_status {
+  min-width: 35px;
+  min-height: 35px;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+#expandTask .task_body {
+  padding: 0px 4px;
+}
+
+#expandTask .task_footer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 0px 4px;
+}
+
+#expandTask .task_close {
+  font-weight: 300;
+  border-radius: 20px;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 
