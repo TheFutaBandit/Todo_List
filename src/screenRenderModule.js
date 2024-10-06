@@ -1,19 +1,23 @@
 export const screenLoader = (() => {
 
-    const addTaskModal = (() => {
-        const addTaskModal = document.querySelector("#add-task-modal");
-        const addTaskButton = document.querySelector(".add-task");
+    // const addTaskModal = (() => {
+    //     const addTaskModal = document.querySelector("#add-task-modal");
+    //     const addTaskButton = document.querySelector(".add-task");
     
-        addTaskButton.addEventListener("click", () => {
-            addTaskModal.showModal();
-        })
-    })();
+    //     addTaskButton.addEventListener("click", () => {
+    //         addTaskModal.showModal();
+    //     })
+    // })();
 
-    const projectCardRender = (name, className = "project-card", classType = "div") => {
+    const projectCardRender = (name, projectIndex = 0, className = "project-card", classType = "div") => {
         const projectList = document.querySelector(".project-list");
         const projectCard = document.createElement(classType);
         projectCard.classList.add(className);
         projectCard.textContent = name;
+        projectCard.setAttribute("data-id", projectIndex)
+        // projectCard.addEventListener("click", (item) => {
+        //     console.log(projectIndex);
+        // })
         projectList.appendChild(projectCard);
     };
 
@@ -53,11 +57,11 @@ export const screenLoader = (() => {
         parentNode.appendChild(task_content);
     }
 
-    const taskCardRender = () => {
+    const taskCardRender = (taskName, taskDate) => {
         const taskContainer = document.querySelector(".task-container");
         const taskCard = document.createElement("div");
         taskCard.classList.add("task");
-        childrenAppendTasks(taskCard);
+        childrenAppendTasks(taskCard,taskName,taskDate);
         taskContainer.appendChild(taskCard);
     }
 
@@ -70,6 +74,6 @@ export const screenLoader = (() => {
     return {
         projectCardRender,
         taskCardRender,
-        addTaskModal
+        // addTaskModal
     }
 })();

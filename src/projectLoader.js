@@ -9,7 +9,7 @@ export const projectLoader = (() => {
 
     const addTaskToProject = (projectIndex, name, description, date, priority) => {
         parentProjectArray[projectIndex].addTaskObject(name,description, date, priority);
-        parentProjectArray[0].addTaskObject(name,description, date, priority);
+        if(projectIndex != 0) parentProjectArray[0].addTaskObject(name,description, date, priority);
     }
 
     function printProject(projectIndex) {
@@ -25,12 +25,13 @@ export const projectLoader = (() => {
         return parentProjectArray.length;
     }
 
-    const defaultAction = (() => {
-        parentProjectArray.push(childProjectObject());
-    })();
+    // const defaultAction = (() => {
+    //     parentProjectArray.push(childProjectObject());
+    // })();
 
 
     return {
+        parentProjectArray,
         addProject,
         addTaskToProject,
         printProject,

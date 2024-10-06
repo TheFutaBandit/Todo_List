@@ -25,20 +25,76 @@ const webpageLoader = (() => {
     // mainProject.parentProjectArray[1].setPriority(0,"high")
     // mainProject.parentProjectArray[1].toggleStatus(0);
     // mainProject.printProject(1);
+
     const screen = screenLoader;
     const mainProject = projectLoader;
 
-    const addProjectButton = (() => {
-        const addButton = document.querySelector(".project-add");
-        addButton.addEventListener("click", () => {
-            mainProject.addProject();
-            screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`);
+    
+
+    const defaultProjectsRender = (() => {
+        mainProject.parentProjectArray.forEach((item) => {
+            screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`, mainProject.parentProjectSize());
         })
     })();
 
-    screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`);
+    function projectAdditionLogic(){
+        screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`, mainProject.parentProjectSize());
+        mainProject.addProject();    
+    }
 
-    for(let i = 0; i<3; i++) {screen.taskCardRender();}
+    const defaultProjectAddition = (() => {
+        projectAdditionLogic();
+    })();
+
+    // function debug(){
+    //     console.log("HI");
+    // }
+
+    const addProjectButton = (() => {
+        const addButton = document.querySelector(".project-add");
+        addButton.addEventListener("click", projectAdditionLogic)
+    })();
+
+    const configureAndButton = (projectIndex = 0) => {
+        const addButton = document.querySelector(".add-task");
+        addButton.addEventListener("click", () => {
+            console.log("hi");
+            screen.taskCardRender("gym hey", "Due Date: Tomorrow");
+            mainProject.addTaskToProject(projectIndex,"gym hey", "gym hey", "56", "hello");
+        })
+    };
+
+    configureAndButton();
+
+
+    // const displayProjectTasksRender = (() => {
+    //     const project_list = document.querySelector(".project-list")
+
+    //     project_list.addEventListener("click", (event) => {
+    //         let projectIndexEvent = event.target.dataset.id;   
+    //         if(projectIndexEvent === undefined) projectIndexEvent = 1;
+    //         configureAndButton(projectIndexEvent);
+    //         // console.log("hi")
+    //         mainProject.parentProjectArray[projectIndexEvent-1].project.forEach((event) => {  
+    //             console.log(event);
+    //         });            
+    //     })
+
+    // })();
+
+
+    // const addTaskToProjectButton = (() => {
+    //     const addButton = document.querySelector(".add-task");
+    //     addButton.addEventListener("click", () => {
+    //         mainProject.addTaskToProject(0,"gym hey", "gym hey", "56", "hello");
+    //         displayProjectTasksRender();
+    //     })
+        
+    // })();
+
+
+
+    
 })();
 
 
