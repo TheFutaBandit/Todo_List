@@ -58,16 +58,35 @@ const webpageLoader = (() => {
 
     const configureAndButton = ((index) => {
         const addButton = document.querySelector(".add-task");
+        const modal = document.querySelector("#add-task-modal");
 
         let projectIndex = 0;
 
-        function addTask() {
-            console.log(`I belong to : ${projectIndex}`);
-            if(projectIndex === "undefined") console.log("wtf");
-            // console.log("hi");
-            screen.taskCardRender("gym hey", "Due Date: Tomorrow");
-            mainProject.addTaskToProject(projectIndex,"gym hey", "gym hey", "56", "Due Date: Tomorrow");
+        function displayTaskFromModal(taskName = "Let It Rip", taskDescription = "loremIpsumBruh", taskDate = "10/10/24", taskPriority = "High") {
+            screen.taskCardRender(taskName, taskDate);
+            mainProject.addTaskToProject(projectIndex,taskName, taskDescription, taskDate, taskPriority);
         }
+
+        function addTask() {
+            // console.log(`I belong to : ${projectIndex}`);
+            // if(projectIndex === "undefined") console.log("wtf");
+            
+            modal.showModal();
+        }
+
+        const taskSubmissionForm = (() => {
+            const task_form = document.querySelector(".task_form");
+            task_form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const form_data = new FormData(task_form);
+                const task_data = Object.fromEntries(form_data);
+                console.log(task_data);
+
+                displayTaskFromModal(task_data["task-name"],task_data["task-description"],task_data["task-date"],task_data["task-priority"]);
+
+                modal.close();
+            })
+        })();
 
         function changeTaskButtonIndex(index) {
             console.log(`I have been changed to ${index}`)
@@ -99,7 +118,6 @@ const webpageLoader = (() => {
     const projectTasksRender = (projectIndex) => {
         mainProject.parentProjectArray[projectIndex].project.forEach((event) => {
             screen.taskCardRender(event.name, event.date);
-            // console.log(event)
         })
     }
 
@@ -113,11 +131,7 @@ const webpageLoader = (() => {
             console.log(`${projectIndexEvent}`);
             configureAndButton.changeTaskButtonIndex(projectIndexEvent);
             screen.clearProjectTasks();
-            projectTasksRender(projectIndexEvent);
-            // console.log("hi")
-            // mainProject.parentProjectArray[projectIndexEvent-1].project.forEach((event) => {  
-            //     console.log(event);
-            // });            
+            projectTasksRender(projectIndexEvent);          
         })
     })();
 

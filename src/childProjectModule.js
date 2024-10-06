@@ -1,9 +1,9 @@
 export const childProjectObject = (() => {
     let project = [];
 
-    const taskMaker = (priority, name, description, date) => {
+    const taskMaker = (name,description, date, priority) => {
         let status = 0;
-        return {priority, name, description, date, status};
+        return {name, description, date, priority, status};
     }
 
     function addTaskObject(name,description, date, priority) {
