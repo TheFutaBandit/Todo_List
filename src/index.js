@@ -43,11 +43,9 @@ const webpageLoader = (() => {
         mainProject.addProject();    
     }
 
-    const expandTask = (taskName, taskDescription, taskDate, taskPriority) => {
-        screen.expandModalRender(taskName, taskDescription, taskDate, taskPriority);
-        const dialogExpand = document.querySelector("#expandTask");
-        dialogExpand.showModal();
-    };
+    
+
+    
 
     const defaultProjectAddition = (() => {
         projectAdditionLogic();
@@ -64,14 +62,24 @@ const webpageLoader = (() => {
 
     
 
+    
+
     const configureAndButton = ((index) => {
         const addButton = document.querySelector(".add-task");
         const modal = document.querySelector("#add-task-modal");
 
         let projectIndex = 0;
 
+        // const expandTask = (taskName, taskDescription, taskDate, taskPriority) => {
+        //     screen.expandModalRender(taskName, taskDescription, taskDate, taskPriority);
+        //     const dialogExpand = document.querySelector("#expandTask");
+        //     dialogExpand.showModal();
+        // };
+
+        
+
         function displayTaskFromModal(taskName = "Let It Rip", taskDescription = "loremIpsumBruh", taskDate = "10/10/24", taskPriority = "High") {
-            screen.taskCardRender(taskName, taskDate);
+            screen.taskCardRender(taskName, taskDate, taskDescription, taskPriority, mainProject.getProjectSize(projectIndex));
             mainProject.addTaskToProject(projectIndex,taskName, taskDescription, taskDate, taskPriority);
         }
 
@@ -88,7 +96,7 @@ const webpageLoader = (() => {
                 event.preventDefault();
                 const form_data = new FormData(task_form);
                 const task_data = Object.fromEntries(form_data);
-                console.log(task_data);
+                // console.log(task_data);
 
                 displayTaskFromModal(task_data["task-name"],task_data["task-description"],task_data["task-date"],task_data["task-priority"]);
 
@@ -129,11 +137,6 @@ const webpageLoader = (() => {
         })
     }
 
-    const expandTaskEventAssign = (() => {
-        const task_list = document.querySelector("task-container");
-
-    })
-
 
     const switchProjects = (() => {
         const project_list = document.querySelector(".project-list")
@@ -157,14 +160,6 @@ const webpageLoader = (() => {
     //     })
         
     // })();
-
-    
-
-    
-
-    
-
-
 
     
 })();

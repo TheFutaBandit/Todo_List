@@ -27,12 +27,17 @@ export const childProjectObject = (() => {
         project[taskIndex].priority = value;
     }
 
+    function getProjectSize() {
+        return project.length();
+    }
+
     return {
         project,
         addTaskObject,
         displayTasks,
         deleteTask,
         toggleStatus,
-        setPriority
+        setPriority,
+        getProjectSize
     }
 });   

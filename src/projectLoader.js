@@ -25,6 +25,10 @@ export const projectLoader = (() => {
         return parentProjectArray.length;
     }
 
+    function getProjectSize(index) {
+        return parentProjectArray[index].getProjectSize;
+    }
+
     // const defaultAction = (() => {
     //     parentProjectArray.push(childProjectObject());
     // })();
@@ -36,6 +40,7 @@ export const projectLoader = (() => {
         addTaskToProject,
         printProject,
         deleteProject,
-        parentProjectSize
+        parentProjectSize,
+        getProjectSize
     }
 })();
