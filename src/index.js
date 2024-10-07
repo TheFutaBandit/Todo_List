@@ -32,8 +32,12 @@ const webpageLoader = (() => {
 
 
     const defaultProjectsRender = (() => {
-        if(mainProject.parentProjectSize() != 0) mainProject.parentProjectArray = mainProject.loadStorageAtBootup();
-        else mainProject.addProject();
+        if(localStorage.length != 0) {
+            mainProject.parentProjectArray = mainProject.loadStorageAtBootup();
+        }
+        else {
+            mainProject.addProject();
+        }
         mainProject.parentProjectArray.forEach((item, index) => {
             screen.projectCardRender(`Project ${index}`, index);
         })

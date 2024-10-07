@@ -1,3 +1,5 @@
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+
 export const screenLoader = (() => {
 
     // const addTaskModal = (() => {
@@ -8,6 +10,14 @@ export const screenLoader = (() => {
     //         addTaskModal.showModal();
     //     })
     // })();
+
+    const dateUpdate = (() => {
+        const date = new Date();
+        const k = format(new Date(), "'It is' eeee', 'd MMMM yyyy")
+        const leftSection = document.querySelector(".left-section");
+        const dateP = document.querySelector(".date");
+        dateP.textContent = k;
+    })();
 
     const projectCardRender = (name, projectIndex = 0, className = "project-card", classType = "div") => {
         const projectList = document.querySelector(".project-list");
