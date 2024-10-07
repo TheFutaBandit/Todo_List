@@ -25,7 +25,9 @@ export const screenLoader = (() => {
         taskDescription = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sed asperiores nulla molestias vitae! Odio, recusandae. Excepturi reprehenderit veniam neque dolorem inventore! Numquam vel sint consequuntur, id ut eos dicta?",
         taskDate = "13/04/2003",
         taskPriority = "High",
-        taskStatus = "0") => {
+        toggleCallBack,
+        taskIndex,
+        projectIndex) => {
 
         const body = document.querySelector("body");
         const expand_task = document.createElement("dialog");
@@ -49,6 +51,10 @@ export const screenLoader = (() => {
         input_status.setAttribute("type", "checkbox");
         task_status.appendChild(input_status);
         task_header.appendChild(task_status);
+
+        input_status.addEventListener("click", () => {
+            toggleCallBack(projectIndex, taskIndex);
+        })
 
 
 
@@ -88,7 +94,12 @@ export const screenLoader = (() => {
         })
     }
 
-    function childrenAppendTasks(parentNode, taskName = "Lorem ipsum dolor sit, amet consectetur adipisicing elit!", taskDate = "Due-Date: 13/23/2024", taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack) {
+    function clearProject() {
+        const projectList = document.querySelector(".project-list");
+        projectList.innerHTML = "";
+    }
+
+    function childrenAppendTasks(parentNode, taskName = "Lorem ipsum dolor sit, amet consectetur adipisicing elit!", taskDate = "Due-Date: 13/23/2024", taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack, toggleCallBack) {
         const priority = document.createElement("div");
         priority.classList.add("priority");
         const task_content = document.createElement("div");
@@ -121,7 +132,7 @@ export const screenLoader = (() => {
         task_content.appendChild(task_options);
 
         checkButton.addEventListener("click", () => {
-            expandModalRender(taskName,taskDescription, taskDate, taskPriority);
+            expandModalRender(taskName,taskDescription, taskDate, taskPriority, toggleCallBack, taskIndex, projectIndex);
             const dialogExpand = document.querySelector("#expandTask");
             dialogExpand.showModal();
         });
@@ -130,7 +141,7 @@ export const screenLoader = (() => {
             const taskContainer = document.querySelector(".task-container");
             taskContainer.removeChild(parentNode);
             // console.log(projectIndex);
-            if(projectIndex != 0) removeTaskCallBack(0, taskIndex);
+            // if(projectIndex != 0) removeTaskCallBack(0, taskIndex);
             removeTaskCallBack(projectIndex,taskIndex);
             
         })
@@ -139,12 +150,12 @@ export const screenLoader = (() => {
         parentNode.appendChild(task_content);
     }
 
-    const taskCardRender = (taskName, taskDate, taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack) => {
+    const taskCardRender = (taskName, taskDate, taskDescription, taskPriority, taskIndex, projectIndex, removeTaskCallBack, toggleCallback) => {
         const taskContainer = document.querySelector(".task-container");
         const taskCard = document.createElement("div");
         taskCard.classList.add("task");
         taskCard.setAttribute("data-index",taskIndex);
-        childrenAppendTasks(taskCard,taskName,taskDate,taskDescription,taskPriority,taskIndex, projectIndex, removeTaskCallBack);
+        childrenAppendTasks(taskCard,taskName,taskDate,taskDescription,taskPriority,taskIndex, projectIndex, removeTaskCallBack, toggleCallback);
         taskContainer.appendChild(taskCard);
     }
 
@@ -157,6 +168,8 @@ export const screenLoader = (() => {
         projectCardRender("+","project-add","button");
     };
 
+
+
     
 
     return {
@@ -164,6 +177,7 @@ export const screenLoader = (() => {
         taskCardRender,
         clearProjectTasks,
         expandModalRender,
+        clearProject,
         // addTaskModal
     }
 })();

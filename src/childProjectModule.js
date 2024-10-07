@@ -15,12 +15,16 @@ export const childProjectObject = (() => {
     }
 
     function deleteTask(taskIndex) {
+        console.log("do I even work");
+        console.log(taskIndex);
         project.splice(taskIndex,1);
     }
 
     function toggleStatus(taskIndex) {
         if(project[taskIndex].status === 0) project[taskIndex].status = 1;
-        else project[taskIndex].status = 1;
+        else project[taskIndex].status = 0;
+        console.log(`I have been toggled to ${project[taskIndex].status}`);
+        // console.log(taskIndex);
     }
 
     function setPriority(taskIndex, value) {
@@ -28,7 +32,7 @@ export const childProjectObject = (() => {
     }
 
     function getProjectSize() {
-        return project.length();
+        return project.length;
     }
 
     return {

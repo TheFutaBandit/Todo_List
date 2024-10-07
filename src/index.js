@@ -29,27 +29,27 @@ const webpageLoader = (() => {
     const screen = screenLoader;
     const mainProject = projectLoader;
 
-    
+
 
     const defaultProjectsRender = (() => {
-        mainProject.parentProjectArray.forEach((item) => {
-            screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`, mainProject.parentProjectSize());
+        if(mainProject.parentProjectSize() != 0) mainProject.parentProjectArray = mainProject.loadStorageAtBootup();
+        else mainProject.addProject();
+        mainProject.parentProjectArray.forEach((item, index) => {
+            screen.projectCardRender(`Project ${index}`, index);
         })
     })();
 
 
     function projectAdditionLogic(){
         screen.projectCardRender(`Project ${mainProject.parentProjectSize()}`, mainProject.parentProjectSize());
-        mainProject.addProject();    
+        mainProject.addProject();  
     }
 
     
 
     
 
-    const defaultProjectAddition = (() => {
-        projectAdditionLogic();
-    })();
+    
 
     // function debug(){
     //     console.log("HI");
@@ -61,7 +61,20 @@ const webpageLoader = (() => {
     })();
 
     const removeTaskCallBack = (projectIndex, projectTask) => {
+        console.log(projectTask)
         mainProject.deleteProjectTask(projectIndex, projectTask);
+        if(mainProject.getProjectSize(projectIndex) === 0) {
+            mainProject.deleteProject(projectIndex);
+        }
+        screenLoader.clearProject();
+        mainProject.parentProjectArray.forEach((item, index) => {
+            screen.projectCardRender(`Project ${index}`, index);
+        })
+    }
+
+    const toggleCallback = (projectIndex, projectTask) => {
+        mainProject.toggleStatusTask(projectIndex, projectTask);
+        
     }
 
     
@@ -81,7 +94,7 @@ const webpageLoader = (() => {
         
 
         function displayTaskFromModal(taskName = "Let It Rip", taskDescription = "loremIpsumBruh", taskDate = "10/10/24", taskPriority = "High") {
-            screen.taskCardRender(taskName, taskDate, taskDescription, taskPriority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack);
+            screen.taskCardRender(taskName, taskDate, taskDescription, taskPriority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack, toggleCallback);
             mainProject.addTaskToProject(projectIndex,taskName, taskDescription, taskDate, taskPriority);
         }
 
@@ -135,7 +148,7 @@ const webpageLoader = (() => {
 
     const projectTasksRender = (projectIndex) => {
         mainProject.parentProjectArray[projectIndex].project.forEach((event) => {
-            screen.taskCardRender(event.name, event.date, event.description, event.priority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack);
+            screen.taskCardRender(event.name, event.date, event.description, event.priority, mainProject.getProjectSize(projectIndex), projectIndex, removeTaskCallBack, toggleCallback);
         })
     }
 
